@@ -1,0 +1,91 @@
+[client]
+
+# Controls whether uncaught app exceptions and deprecation warnings
+# are displayed in the browser. This can be one of the following:
+# - "full"       : In the browser, Streamlit displays app deprecation
+#                  warnings and exceptions, including exception types,
+#                  exception messages, and associated tracebacks.
+# - "stacktrace" : In the browser, Streamlit displays exceptions,
+#                  including exception types, generic exception messages,
+#                  and associated tracebacks. Deprecation warnings and
+#                  full exception messages will only print to the
+#                  console.
+# - "type"       : In the browser, Streamlit displays exception types and
+#                  generic exception messages. Deprecation warnings, full
+#                  exception messages, and associated tracebacks only
+#                  print to the console.
+# - "none"       : In the browser, Streamlit displays generic exception
+#                  messages. Deprecation warnings, full exception
+#                  messages, associated tracebacks, and exception types
+#                  will only print to the console.
+# - True         : This is deprecated. Streamlit displays "full"
+#                  error details.
+# - False        : This is deprecated. Streamlit displays "stacktrace"
+#                  error details.
+# Default: "full"
+showErrorDetails = "type"
+
+# Change the visibility of items in the toolbar, options menu,
+# and settings dialog (top right of the app).
+# Allowed values:
+# - "auto"      : Show the developer options if the app is accessed through
+#                 localhost or through Streamlit Community Cloud as a developer.
+#                 Hide them otherwise.
+# - "developer" : Show the developer options.
+# - "viewer"    : Hide the developer options.
+# - "minimal"   : Show only options set externally (e.g. through
+#                 Streamlit Community Cloud) or through st.set_page_config.
+#                 If there are no options left, hide the menu.
+# Default: "auto"
+toolbarMode = "minimal"
+
+
+[runner]
+
+# Allows you to type a variable or string by itself in a single line of
+# Python code to write it to the app.
+# Default: true
+magicEnabled = true
+
+# Handle script rerun requests immediately, rather than waiting for script
+# execution to reach a yield point. This makes Streamlit much more
+# responsive to user interaction, but it can lead to race conditions in
+# apps that mutate session_state data outside of explicit session_state
+# assignment statements.
+# Default: true
+fastReruns = true
+
+
+[server]
+
+# The port where the server will listen for browser connections.
+# Don't use port 3000 which is reserved for internal development.
+# Default: 8501
+port = 8501
+
+# The base path for the URL where Streamlit should be served from.
+# Default: ""
+baseUrlPath = "home"
+
+# Enables support for Cross-Origin Resource Sharing (CORS) protection,
+# for added security.
+# If XSRF protection is enabled and CORS protection is disabled at the
+# same time, Streamlit will enable them both instead.
+# Default: true
+enableCORS = true
+
+# Enables support for Cross-Site Request Forgery (XSRF) protection, for
+# added security.
+# If XSRF protection is enabled and CORS protection is disabled at the
+# same time, Streamlit will enable them both instead.
+# Default: true
+enableXsrfProtection = true
+
+# Max size, in megabytes, for files uploaded with the file_uploader.
+# Default: 200
+maxUploadSize = 3
+
+
+
+
+

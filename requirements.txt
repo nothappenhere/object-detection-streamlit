@@ -1,0 +1,7 @@
+streamlit
+requests
+opencv-python-headless
+numpy
+python-dotenv
+
+# pip install -r requirements.txt
