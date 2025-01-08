@@ -43,3 +43,50 @@ def detect_parking_space(image, endpoint, filter_classes, min_confidence, max_ov
     else:
         st.error(f"Error: {response.status_code}")
         return None
+
+
+# Fungsi menggambar bounding box dan menghitung
+def draw_boxes_and_count(image, detections, filter_classes, min_confidence, thickness):
+    class_colors = {"empty": (0, 255, 0), "occupied": (0, 0, 255)}
+
+    counter = {"empty": 0, "occupied": 0}
+    allowed_classes = (
+        filter_classes.replace(" ", "").split(",") if filter_classes else []
+    )
+
+    for detection in detections["predictions"]:
+        confidence = detection["confidence"]
+        label = detection["class"]
+
+        # Filter berdasarkan confidence dan kelas
+        if confidence < min_confidence / 100 or (
+            allowed_classes and label not in allowed_classes
+        ):
+            continue
+
+        x, y, w, h = (
+            int(detection["x"]),
+            int(detection["y"]),
+            int(detection["width"]),
+            int(detection["height"]),
+        )
+
+        if label in counter:
+            counter[label] += 1
+
+        color = class_colors.get(label, (255, 255, 255))
+        start_point = (x - w // 2, y - h // 2)
+        end_point = (x + w // 2, y + h // 2)
+
+        cv2.rectangle(image, start_point, end_point, color, thickness)
+        cv2.putText(
+            image,
+            f"{label} ({confidence:.2f})",
+            (start_point[0], start_point[1] - 10),
+            cv2.FONT_HERSHEY_SIMPLEX,
+            0.5,
+            color,
+            1,
+        )
+
+    return image, counter
