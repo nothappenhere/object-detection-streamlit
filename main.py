@@ -80,6 +80,8 @@ if model_source == "Roboflow API":
             "Filter Classes (Separate names with commas)",
             placeholder="e.g., empty, occupied",
         )
+        filter_classes.lower()
+        
         stroke_width = st.radio(
             "Stroke Width:", ["1px", "2px", "5px", "10px"], horizontal=True
         )
